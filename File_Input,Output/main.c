@@ -11,7 +11,6 @@
 #include "dbDelete.h"
 #include "dbListScore.h"
 
-
 int main(int argc, char *argv[])
 {
    char c = 'x';
@@ -23,10 +22,6 @@ int main(int argc, char *argv[])
         fprintf(stderr,  "사용법 : %s file\n", argv[0]);
         exit(1);
     }
-
-
-
-
 
    while(1){
 
@@ -62,8 +57,6 @@ int main(int argc, char *argv[])
       // }
 
      }
-
-
 
 
    //close(fd);
