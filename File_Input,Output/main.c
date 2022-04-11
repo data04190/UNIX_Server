@@ -32,32 +32,31 @@ int main(int argc, char *argv[])
 
 
              if(c == 'c')
-                dbcreate(argv);
+                 dbcreate(argv);
 
-             if( c== 'q')
-                dbquery(argv);
+             else if( c== 'q')
+                 dbquery(argv);
 
-             if (c == 'u')
-                dbupdate(argv);
+             else if (c == 'u')
+                 dbupdate(argv);
 
-             if (c == 'l')
+             else if (c == 'l')
                  dblist(argv);
 
-             if (c == 'a')
+             else if (c == 'a')
                  dbadd(argv);
 
-             if (c == 'd')
+             else if (c == 'd')
                  dbdelete(argv);
 
-             if (c == 's')
+             else if (c == 's')
                  list_score(argv);
 
-             if (c == 'e')
-                break;
+             else if (c == 'e')
+                 break;
       // }
 
      }
-
 
    //close(fd);
     exit(0);
