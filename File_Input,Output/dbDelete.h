@@ -1,0 +1,1 @@
+void dbdelete(char *argv[]);
