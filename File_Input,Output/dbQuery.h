@@ -1,0 +1,2 @@
+
+void dbquery (char *argv[]);
