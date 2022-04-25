@@ -12,38 +12,39 @@ main()
     char *s;
     char *save;
     int argi;
-    /* °ø¹é, ÅÇ, °³ÇàÀ¸·Î ÀÌ·ç¾îÁø ±¸ºÐÀÚ ¼±¾ð */
+    /*공백, 탭, 개행으로 이루어진 구분자 선언 */
     static const char delim[] = " \t\n";
     int pid, status;
 
-    /* ¹«ÇÑ ¹Ýº¹ */
+    /* 무한 반복 */
     while(1) {
-       /* ÇÁ·ÒÇÁÆ® Ãâ·Â */
+       /* 프롬프트 출력 */
        printf("myshell$ ");
        gets(buf);
        argi = 0;
-       /* ¹®ÀÚ¿­¿¡¼­ delimÀ» ±âÁØÀ¸·Î ´Ü¾î¸¦ Àß¶ó³¿ */
+       /*문자열에서 delim을 기준으로 단어를 잘라냄 */
        s = strtok_r(buf, delim, &save);
        while(s) {
           arg[argi++] = s;
           s = strtok_r(NULL, delim, &save);
        }
-       /* ÀÎ¼ö°¡ ´õ ¾øÀ½À» ÀÇ¹ÌÇÏ´Â ¹®ÀÚ Ãß°¡ */
+       /* 인수가 더 없음을 의미하는 문자 추가 */
        arg[argi] = (char *)0;
 
-       /* ÇÁ·ÒÇÁÆ®·Î ÀÔ·Â ¹ÞÀº Ã¹ ¹øÂ° ´Ü¾î°¡ ¡®quit¡¯ÀÌ¸é while ¹® ¹þ¾î³² */
+       /* 프롬프트로 입력 받은 첫 번째 단어가  'quit''이면 while 문 벗어남 */
        if (!strcmp(arg[0], "quit"))
            break;
 
-       if ((pid=fork()) == -1)   /* fork È£Ãâ¿¡ ½ÇÆÐÇÏ¸é */
+       if ((pid=fork()) == -1)   /* fork 호출에 실패하면 */
           perror("fork failed");
-       /* ºÎ¸ð ÇÁ·Î¼¼½º´Â ÀÚ½Ä ÇÁ·Î¼¼½º°¡ Á¾·áµÇ±â¸¦ ±â´Ù¸² */
+       /* 부모 프로세스는 자식 프로세스가 종료되기를 기다림 */
        else if (pid != 0) {
           pid = wait(&status);
-       /* ÀÚ½Ä ÇÁ·Î¼¼½º´Â execvp¸¦ ÀÌ¿ëÇÏ¿© arg[0] ½ÇÇà */
+       /* 자식 프로세스는 execvp를 이용하여 arg[0] 실행*/
        } else {
           execvp(arg[0], arg);
        }
     }
     exit(0);
 }
+
