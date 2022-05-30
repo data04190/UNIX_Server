@@ -23,14 +23,14 @@ void dbadd( char *argv[])
 
      if(scanf("%d %s %d", &new.id, new.name, &new.score) == 3){
 
-         lock.l_type = F_RDLCK;
+         lock.l_type = F_RDLCK;  
          lock.l_whence = SEEK_SET;
          lock.l_start = (new.id - START_ID) * sizeof(rec);
          lock.l_len = sizeof(rec);
 
          if(fcntl(fd, F_SETLKW, &lock) == -1){
-        perror(argv[1]);
-            exit(3);
+             perror(argv[1]);
+             exit(3);
          }
 
          lseek(fd, (new.id - START_ID) * sizeof(new), SEEK_SET);
@@ -47,7 +47,7 @@ void dbadd( char *argv[])
          else printf("이미 저장된 학생 정보 있음\n");
 
 
-        lock.l_type = F_UNLCK;
+        lock.l_type = F_UNLCK;   // 잠금 설정 해제.
         fcntl(fd, F_SETLK, &lock);
      }
 
