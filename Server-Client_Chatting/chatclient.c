@@ -27,17 +27,17 @@ main()
 
         if (pid == 0) {    //자식 프로세스 
 
-	         n = read(fd1, smsg, MAXLINE);
+	     n = read(fd1, smsg, MAXLINE);
              if ( n > 0) 
                  printf("서버 :  %s\n", smsg);
 
-         } else{           // 부모 프로세스
+        } else{           // 부모 프로세스
 
-	         fgets(cmsg, MAXLINE, stdin);
-	         if ( (strlen(cmsg) > 1)  ) {
-                  printf("클라이언트 : %s", cmsg);
-	              write(fd2, cmsg, strlen(cmsg)+1);
-             }
+	      fgets(cmsg, MAXLINE, stdin);
+	      if ( (strlen(cmsg) > 1)  ) {
+                   printf("클라이언트 : %s", cmsg);
+	           write(fd2, cmsg, strlen(cmsg)+1);
+               }
        }
-    }
+   }
 }
