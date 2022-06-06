@@ -12,8 +12,8 @@ main()
     int fd1, fd2, n;
     char inmsg[MAXLINE];
 
-    fd1 = open("/home/users/22-1/kmk04190/hw05/chatfifo1", O_RDONLY);
-    fd2 = open("//home/users/22-1/kmk04190/hw05/chatfifo2", O_WRONLY);
+    fd1 = open("/home/users/22-1/kmk04190/hw05/chatfifo1", O_RDONLY);   // 절대경로
+    fd2 = open("/home/users/22-1/kmk04190/hw05/chatfifo2", O_WRONLY);   //절대경로
     if(fd1 == -1 || fd2 == -1) {
         perror("open");
         exit(1);
