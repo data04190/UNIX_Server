@@ -45,7 +45,7 @@ main() {
 
             fgets(smsg, MAXLINE, stdin);
             if ( (strlen(smsg) > 1)  ) {
-           	      printf("서버 : %s", smsg);
+           	     printf("서버 : %s", smsg);
 	      n = write(fd1, smsg, strlen(smsg)+1);
                   if (n == -1) {
                      perror("write");
