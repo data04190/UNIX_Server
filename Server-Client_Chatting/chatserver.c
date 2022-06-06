@@ -8,8 +8,8 @@
 #define MAXLINE 256
 
 main() {
-    int fd1, fd2, n;
-    char msg[MAXLINE];
+    int fd1, fd2, n, pid;
+    char cmsg[MAXLINE],smsg[MAXLINE];
 
     if(mkfifo("./chatfifo1", 0666) == -1) {
         perror("mkfifo");
@@ -32,15 +32,28 @@ main() {
     }
 
     printf("서버 시작 \n");
+
+    pid = fork(); 
+
     while(1) {
-        printf("서버 : ");
-        fgets(msg, MAXLINE, stdin);
-        n = write(fd1, msg, strlen(msg)+1);
-        if (n == -1) {
-            perror("write");
-            exit(1);
-        }
-        n = read(fd2, msg, MAXLINE);
-        printf("클라이언트 -> %s\n", msg);
-    }
+
+        if (pid == 0) {  //자식 프로세스 
+              n = read(fd2, cmsg, MAXLINE);
+              printf("클라이언트 :  %s\n", cmsg); 
+
+        } else{       // 부모 프로세스
+
+            fgets(smsg, MAXLINE, stdin);
+            if ( (strlen(smsg) > 1)  ) {
+           	      printf("서버 : %s", smsg);
+	      n = write(fd1, smsg, strlen(smsg)+1);
+                  if (n == -1) {
+                     perror("write");
+                     exit(1);
+                   }
+	
+            }
+
+       }
+    }     
 }
