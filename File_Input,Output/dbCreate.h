@@ -1,1 +1,0 @@
-void dbcreate(char *argv[]);
