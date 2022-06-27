@@ -1,1 +1,0 @@
-void dbadd( char *argv[]);
