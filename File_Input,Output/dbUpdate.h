@@ -1,2 +1,0 @@
-
-void dbupdate( char *argv[]);
