@@ -3,13 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "student.h"
-#include "dbCreate.h"
-#include "dbQuery.h"
-#include "dbUpdate.h"
-#include "dbList.h"
-#include "dbAdd.h"
-#include "dbDelete.h"
-#include "dbListScore.h"
+#include "DBFunction.h"
 
 int main(int argc, char *argv[])
 {
